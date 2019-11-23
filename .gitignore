@@ -1,0 +1,9 @@
+.ipynb_checkpoints/
+consignes/
+data/*
+hyperopt-sklearn/
+plots/
+projet7_kaggle_FE1.ipynb
+projet7_kaggle_FE2.ipynb
+projet7_kaggle_FS.ipynb
+projet7_misc.ipynb
