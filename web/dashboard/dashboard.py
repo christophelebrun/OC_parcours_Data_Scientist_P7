@@ -1,6 +1,7 @@
 # TO RUN : $streamlit run dashboard/dashboard.py
 # Local URL: http://localhost:8501
 # Network URL: http://192.168.0.50:8501
+# Online URL : http://15.188.179.79
 
 import streamlit as st
 from PIL import Image
@@ -9,14 +10,10 @@ import json
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# import numpy
-# import matplotlib.pyplot as plt
-# import matplotlib
-
-
-# matplotlib.use('Agg')
 
 def main():
+
+    API_URL = "http://127.0.0.1:5000/api/"
 
     # Logo "Prêt à dépenser"
     
@@ -34,7 +31,7 @@ def main():
     def get_sk_id_list():
 
         # URL of the sk_id API
-        SK_IDS_API_URL = "http://127.0.0.1:5000/api/sk_ids/"
+        SK_IDS_API_URL = API_URL + "sk_ids/"
 
         # Requesting the API and saving the response
         response = requests.get(SK_IDS_API_URL)
@@ -63,7 +60,7 @@ def main():
     @st.cache
     def get_features_importance():
         # URL of the features' importance API
-        FEATURES_IMP_API_URL = "http://127.0.0.1:5000/api/features_imp"
+        FEATURES_IMP_API_URL = API_URL + "features_imp"
     
         # save the response to API request
         response = requests.get(FEATURES_IMP_API_URL)
@@ -125,7 +122,7 @@ def main():
     @st.cache
     def personal_data(select_sk_id):
         # URL of the scoring API (ex: SK_ID_CURR = 100005)
-        PERSONAL_DATA_API_URL = "http://127.0.0.1:5000/api/personal_data/?SK_ID_CURR=" + str(select_sk_id)
+        PERSONAL_DATA_API_URL = API_URL + "personal_data/?SK_ID_CURR=" + str(select_sk_id)
 
         # save the response to API request
         response = requests.get(PERSONAL_DATA_API_URL)
@@ -142,7 +139,7 @@ def main():
     @st.cache
     def get_aggregate():
         # URL of the aggregations API
-        AGGREGATIONS_API_URL = "http://127.0.0.1:5000/api/aggregations"
+        AGGREGATIONS_API_URL = API_URL + "aggregations"
 
         # Requesting the API and save the response
         response = requests.get(AGGREGATIONS_API_URL)
@@ -182,7 +179,7 @@ def main():
     @st.cache
     def personal_scoring(select_sk_id):
         # URL of the scoring API
-        SCORING_API_URL = "http://127.0.0.1:5000/api/scoring/?SK_ID_CURR=" + str(select_sk_id)
+        SCORING_API_URL = API_URL + "scoring/?SK_ID_CURR=" + str(select_sk_id)
 
         # Requesting the API and save the response
         response = requests.get(SCORING_API_URL)
@@ -199,7 +196,7 @@ def main():
     @st.cache
     def score_explanation(select_sk_id):
         # URL of the scoring API
-        SCORING_EXP_API_URL = "http://127.0.0.1:5000/api/local_interpretation?SK_ID_CURR=" + str(select_sk_id)
+        SCORING_EXP_API_URL = API_URL + "local_interpretation?SK_ID_CURR=" + str(select_sk_id)
 
         # Requesting the API and save the response
         response = requests.get(SCORING_EXP_API_URL)
@@ -245,7 +242,7 @@ def main():
     @st.cache
     def get_features_descriptions():
         # URL of the aggregations API
-        FEAT_DESC_API_URL = "http://127.0.0.1:5000/api/features_desc"
+        FEAT_DESC_API_URL = API_URL + "features_desc"
 
         # Requesting the API and save the response
         response = requests.get(FEAT_DESC_API_URL)
