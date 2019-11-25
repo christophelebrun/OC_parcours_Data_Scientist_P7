@@ -120,7 +120,7 @@ def main():
 
     # Personal data (cached)
     @st.cache
-    def personal_data(select_sk_id):
+    def get_personal_data(select_sk_id):
         # URL of the scoring API (ex: SK_ID_CURR = 100005)
         PERSONAL_DATA_API_URL = API_URL + "personal_data/?SK_ID_CURR=" + str(select_sk_id)
 
@@ -156,15 +156,16 @@ def main():
     if st.sidebar.checkbox('Show personal data'):
 
         # Get personal data
-        personal_data = personal_data(select_sk_id)
-
+        personal_data = get_personal_data(select_sk_id)
 
         if st.checkbox('Show population data'):
             # Get aggregated data
             data_agg = get_aggregate()
             # Concatenation of the information to display
             df_display = pd.concat([personal_data, data_agg], axis=1)
+
         else:
+            # Display only personal_data
             df_display = personal_data
         
         st.dataframe(df_display)
@@ -269,4 +270,4 @@ def main():
 
 
 if __name__== '__main__':
-   main()
+    main()
