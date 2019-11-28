@@ -217,13 +217,13 @@ def main():
         # Get score
         score = personal_scoring(select_sk_id)
         # Display score (default probability)
-        st.write('Default probability:', score)
+        st.write('Default probability:', score, '%')
 
         if st.checkbox('Show explanations'):
             # Get prediction, bias and features contribs from surrogate model
             (_, bias, contribs) = score_explanation(select_sk_id)
             # Display the bias of the surrogate model
-            st.write("Population mean (bias):", bias)
+            st.write("Population mean (bias):", bias*100, "%")
             # Remove the features with no contribution
             contribs = contribs[contribs!=0]
             # Sorting by descending absolute values
